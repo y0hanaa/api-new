@@ -13,12 +13,14 @@
     <div id="result"></div>
     <script>
         const form = document.getElementById("form");
-        form.addEventListener("submit", (event) => {
+        form.addEventListener("submit", async (event) => {
             event.preventDefault()
             //const cep = document.getElementById("cep").value
-            const formData = new FormData(form)
-            const data = Object.fromEntries(formData)
-            console.log(data);
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData);
+
+            const fetchData = await fetch("http://viacep.com.br/ws/01001000/json/")
+            console.log(fetchData)
         })
     </script>
 </body>
