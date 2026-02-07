@@ -8,35 +8,10 @@
 </head>
 
 <body>
-    <form id="form">
-        <input id="cep" type="text" name="cep">
-        <button>search</button>
-    </form>
-    <ul id="result"></ul>
-    <script>
-        const form = document.getElementById("form");
-
-        const result = document.getElementById("result");
-
-        form.addEventListener("submit", async (event) => {
-            event.preventDefault()
-
-            //const cep = document.getElementById("cep").value
-
-            const formData = new FormData(form);
-
-            const data = Object.fromEntries(formData);
-
-            const fetchData = await fetch(`http://viacep.com.br/ws/${data.cep}/json/`);
-            const cepInfo = await fetchData.json();
-
-            for (const key in cepInfo) {
-                result.innerHTML = `<li>${key}: ${cepInfo[key]}</li>`
-            }
-
-            console.log(cepInfo["bairro"], cepInfo.bairro)
-
-        })
+    <script type="modeule">
+        const dataFetch = await fetch("http://localhost:3000")
+            const data = await dataFetch.json()
+        console.log(data)
     </script>
 </body>
 
