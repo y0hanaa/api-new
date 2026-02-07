@@ -6,10 +6,20 @@
     <title>Document</title>
 </head>
 <body>
-    <form>
-        <input type = "text">
+    <form id="form">
+        <input id ="cep" type="text" name = "cep">
         <button>search</button>
     </form>
     <div id="result"></div>
+    <script>
+        const form = document.getElementById("form");
+        form.addEventListener("submit", (event) => {
+            event.preventDefault()
+            //const cep = document.getElementById("cep").value
+            const formData = new FormData(form)
+            const data = Object.fromEntries(formData)
+            console.log(data);
+        })
+    </script>
 </body>
 </html>
