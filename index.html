@@ -1,27 +1,43 @@
 <!DOCTYPE html>
 <html lang="PT-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <form id="form">
-        <input id ="cep" type="text" name = "cep">
+        <input id="cep" type="text" name="cep">
         <button>search</button>
     </form>
-    <div id="result"></div>
+    <ul id="result"></ul>
     <script>
         const form = document.getElementById("form");
+
+        const result = document.getElementById("result");
+
         form.addEventListener("submit", async (event) => {
             event.preventDefault()
+
             //const cep = document.getElementById("cep").value
+
             const formData = new FormData(form);
+
             const data = Object.fromEntries(formData);
 
-            const fetchData = await fetch("http://viacep.com.br/ws/01001000/json/")
-            console.log(fetchData)
+            const fetchData = await fetch(`http://viacep.com.br/ws/${data.cep}/json/`);
+            const cepInfo = await fetchData.json();
+
+            for (const key in cepInfo) {
+                result.innerHTML = `<li>${key}: ${cepInfo[key]}</li>`
+            }
+
+            console.log(cepInfo["bairro"], cepInfo.bairro)
+
         })
     </script>
 </body>
+
 </html>
